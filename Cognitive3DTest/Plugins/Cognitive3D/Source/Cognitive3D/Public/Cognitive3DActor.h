@@ -24,6 +24,10 @@ public:
 	ACognitive3DActor();
 
 	static ACognitive3DActor* GetCognitive3DActor();
+    /**
+     * Get the Cognitive3DActor for a specific world
+     */
+	static ACognitive3DActor* GetCognitive3DActor(UWorld *World);
 	static UWorld* GetCognitiveSessionWorld();
 
 	//used only for blueprint events

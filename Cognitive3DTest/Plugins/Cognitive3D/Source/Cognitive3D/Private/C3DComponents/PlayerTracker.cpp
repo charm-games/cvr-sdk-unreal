@@ -16,7 +16,8 @@ void UPlayerTracker::BeginPlay()
 
 	cog = FAnalyticsCognitive3D::Get().GetCognitive3DProvider().Pin();
 
-	auto cognitiveActor = ACognitive3DActor::GetCognitive3DActor();
+    // Get the cognitive actor specifically for this world
+	auto cognitiveActor = ACognitive3DActor::GetCognitive3DActor(GetWorld());
 	if (cognitiveActor != GetOwner())
 	{
 		UnregisterComponent();
@@ -155,6 +156,14 @@ void UPlayerTracker::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 	}
 	if (cog->CurrentTrackingSceneId.IsEmpty()) { return; }
 
+    // Ensure the controllers are in the same world
+    if (controllers.Num() > 0 && controllers[0]->GetWorld() != GetWorld()) {
+        // They are not so reset them. A new pawn may have been possessed
+        controllers.Reset();
+
+	    GEngine->GetAllLocalPlayerControllers(controllers);
+    }
+
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	currentTime += DeltaTime;
@@ -253,6 +262,9 @@ void UPlayerTracker::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 void UPlayerTracker::EndPlay(EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
+
+    // Clear out the controllers so stale player controllers won't be evaluated
+    controllers.Reset();
 }
 
 float UPlayerTracker::GetLastSendTime()

@@ -100,3 +100,18 @@ ACognitive3DActor* ACognitive3DActor::GetCognitive3DActor()
 
 	return instance;
 }
+
+ACognitive3DActor* ACognitive3DActor::GetCognitive3DActor(UWorld *World)
+{
+    for (TObjectIterator<ACognitive3DActor> Itr; Itr; ++Itr)
+    {
+        UWorld* tempWorld = Itr->GetWorld();
+        if (tempWorld == NULL) { continue; }
+        if (tempWorld->WorldType != EWorldType::PIE && tempWorld->WorldType != EWorldType::Game) { continue; }
+        if (tempWorld != World) { continue; }
+        instance = *Itr;
+        break;
+    }
+
+	return instance;
+}
