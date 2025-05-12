@@ -3,6 +3,10 @@
 
 #include "C3DComponents/EnhancedInputTracker.h"
 
+#include "Engine/LocalPlayer.h"
+#include "GameFramework/PlayerController.h"
+
+
 // Sets default values for this component's properties
 UEnhancedInputTracker::UEnhancedInputTracker()
 {
