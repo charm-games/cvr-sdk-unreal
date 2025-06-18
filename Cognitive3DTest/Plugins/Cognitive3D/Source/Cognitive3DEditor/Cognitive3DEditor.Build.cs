@@ -38,7 +38,8 @@ public class Cognitive3DEditor : ModuleRules
                 "MeshUtilities",
                 "GLTFExporter",
                 "AssetRegistry",
-                "Landscape"
+                "Landscape",
+                "DeveloperToolSettings"
             });
 
         PrivateDependencyModuleNames.AddRange(
@@ -64,7 +65,8 @@ public class Cognitive3DEditor : ModuleRules
                 "Projects",
                 "Cognitive3D",
 				"RenderCore",
-                "GLTFExporter"
+                "GLTFExporter",
+                "DeveloperToolSettings"
             }
 		);
 		PrivateIncludePathModuleNames.AddRange(
