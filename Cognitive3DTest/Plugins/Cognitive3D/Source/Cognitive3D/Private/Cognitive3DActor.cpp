@@ -189,13 +189,15 @@ void ACognitive3DActor::InitializeControllers()
 	if (LeftController && !HasDynamicObjectComponent(LeftController))
 	{
 		//create dynamic objects and assign them during runtime
-		UDynamicObject* LeftHandDyn = NewObject<UDynamicObject>(LeftController);
+		UDynamicObject* LeftHandDyn = nullptr;
 		if (LeftHandComponent)
 		{
+		    LeftHandDyn = NewObject<UDynamicObject>(LeftHandComponent);
 			LeftHandDyn->AttachToComponent(LeftHandComponent, FAttachmentTransformRules::KeepRelativeTransform);
 		}
 		else
 		{
+		    LeftHandDyn = NewObject<UDynamicObject>(LeftController);
 			LeftHandDyn->AttachToComponent(LeftController, FAttachmentTransformRules::KeepRelativeTransform);
 		}
 		//LeftHandDyn->MeshName = TEXT("LeftHandMesh");
@@ -252,13 +254,15 @@ void ACognitive3DActor::InitializeControllers()
 
 	if (RightController && !HasDynamicObjectComponent(RightController))
 	{
-		UDynamicObject* RightHandDyn = NewObject<UDynamicObject>(RightController);
+		UDynamicObject* RightHandDyn = nullptr;
 		if (RightHandComponent)
 		{
+		    RightHandDyn = NewObject<UDynamicObject>(RightHandComponent);
 			RightHandDyn->AttachToComponent(RightHandComponent, FAttachmentTransformRules::KeepRelativeTransform);
 		}
 		else
 		{
+		    RightHandDyn = NewObject<UDynamicObject>(RightController);
 			RightHandDyn->AttachToComponent(RightController, FAttachmentTransformRules::KeepRelativeTransform);
 		}
 		//RightHandDyn->MeshName = TEXT("RightHandMesh");
