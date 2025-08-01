@@ -368,7 +368,7 @@ UWorld* ACognitive3DActor::GetCognitiveSessionWorld()
 {
 	auto cognitiveActor = GetCognitive3DActor();
 	// MATT @ CHARM - Avoid PIE crash
-	if (!IsValid(cognitiveActor) || !IsValid(cognitiveActor->GetOuter())) { return nullptr; }
+	if (!IsValid(cognitiveActor)) { return nullptr; }
 	return cognitiveActor->GetWorld();
 }
 
