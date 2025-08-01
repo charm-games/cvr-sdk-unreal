@@ -367,7 +367,8 @@ bool ACognitive3DActor::HasDynamicObjectComponent(USceneComponent* Parent)
 UWorld* ACognitive3DActor::GetCognitiveSessionWorld()
 {
 	auto cognitiveActor = GetCognitive3DActor();
-	if (cognitiveActor == nullptr) { return nullptr; }
+	// MATT @ CHARM - Avoid PIE crash
+	if (!IsValid(cognitiveActor)) { return nullptr; }
 	return cognitiveActor->GetWorld();
 }
 
