@@ -385,6 +385,10 @@ ACognitive3DActor* ACognitive3DActor::GetCognitive3DActor(const UObject *WorldCo
  
     // If the world is null something has gone very wrong
     check(IsValid(RequestedWorld));
+	// Prevent crashing the editor when exiting PIE in the end of act interstitial 
+	if (!IsValid(RequestedWorld)) {
+		return nullptr;
+	}
  
  	// Check per-world cache
     ACognitive3DActor **AnalyticsActor = PerWorldInstanceMap.Find(RequestedWorld->GetUniqueID());
