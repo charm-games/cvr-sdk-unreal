@@ -30,7 +30,7 @@ void UHMDHeight::BeginPlay()
 
 void UHMDHeight::OnSessionBegin()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 	world->GetTimerManager().SetTimer(IntervalHandle, FTimerDelegate::CreateUObject(this, &UHMDHeight::EndInterval), IntervalDuration, true);
 	SampledHeights.Empty();
@@ -59,7 +59,7 @@ void UHMDHeight::EndInterval()
 				cognitive->SetParticipantProperty("height", GetMedianHeight() + ForeheadHeight);
 				
 				//when complete, clear timer
-				auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+				auto world = GetWorld();
 				if (world == nullptr) { return; }
 				world->GetTimerManager().ClearTimer(IntervalHandle);
 			}
@@ -76,7 +76,7 @@ float UHMDHeight::GetMedianHeight()
 
 void UHMDHeight::OnSessionEnd()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 	world->GetTimerManager().ClearTimer(IntervalHandle);
 }

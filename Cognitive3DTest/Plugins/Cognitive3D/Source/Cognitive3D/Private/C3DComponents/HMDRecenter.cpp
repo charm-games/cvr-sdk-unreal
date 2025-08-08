@@ -45,7 +45,7 @@ void UHMDRecenter::TickComponent(float DeltaTime, ELevelTick TickType, FActorCom
 
 void UHMDRecenter::OnSessionBegin()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 
 	bool bFoundVRNotifications = false;
@@ -83,7 +83,7 @@ void UHMDRecenter::OnSessionBegin()
 
 void UHMDRecenter::OnSessionEnd()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 
 	if (!VRNotifications)

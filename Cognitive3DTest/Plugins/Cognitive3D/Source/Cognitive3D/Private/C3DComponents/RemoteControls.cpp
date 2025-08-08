@@ -54,7 +54,7 @@ void URemoteControls::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 
 void URemoteControls::OnSessionBegin()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 
 	if (bFetchVariablesAutomatically)

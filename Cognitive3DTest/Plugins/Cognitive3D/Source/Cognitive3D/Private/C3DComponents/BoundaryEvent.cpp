@@ -59,7 +59,7 @@ void UBoundaryEvent::BeginPlay()
 
 void UBoundaryEvent::OnSessionBegin()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 
 	BoundaryCrossed = false;
@@ -103,7 +103,7 @@ void UBoundaryEvent::EndInterval()
 
 void UBoundaryEvent::OnSessionEnd()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 	world->GetTimerManager().ClearTimer(IntervalHandle);
 }

@@ -30,7 +30,7 @@ void UBatteryLevel::BeginPlay()
 
 void UBatteryLevel::OnSessionBegin()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 	world->GetTimerManager().SetTimer(IntervalHandle, FTimerDelegate::CreateUObject(this, &UBatteryLevel::EndInterval), Interval, true);
 }
@@ -82,7 +82,7 @@ void UBatteryLevel::EndInterval()
 }
 void UBatteryLevel::OnSessionEnd()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 	world->GetTimerManager().ClearTimer(IntervalHandle);
 }

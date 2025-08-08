@@ -38,7 +38,7 @@ void UHMDEvents::BeginPlay()
 
 void UHMDEvents::OnSessionBegin()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 	world->GetTimerManager().SetTimer(IntervalHandle, FTimerDelegate::CreateUObject(this, &UHMDEvents::EndInterval), IntervalDuration, true);
 }
@@ -72,7 +72,7 @@ void UHMDEvents::EndInterval()
 
 void UHMDEvents::OnSessionEnd()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 	world->GetTimerManager().ClearTimer(IntervalHandle);
 }

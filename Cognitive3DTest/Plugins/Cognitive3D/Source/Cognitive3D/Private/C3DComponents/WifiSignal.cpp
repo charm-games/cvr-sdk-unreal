@@ -51,7 +51,7 @@ void UWifiSignal::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 
 void UWifiSignal::OnSessionBegin()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 	world->GetTimerManager().SetTimer(IntervalHandle, FTimerDelegate::CreateUObject(this, &UWifiSignal::EndInterval), IntervalDuration, true);
 }

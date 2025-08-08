@@ -31,7 +31,7 @@ void UHandElevation::BeginPlay()
 
 void UHandElevation::OnSessionBegin()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 	world->GetTimerManager().SetTimer(IntervalHandle, FTimerDelegate::CreateUObject(this, &UHandElevation::EndInterval), IntervalDuration, true);
 }
@@ -66,7 +66,7 @@ void UHandElevation::EndInterval()
 
 void UHandElevation::OnSessionEnd()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 	world->GetTimerManager().ClearTimer(IntervalHandle);
 }

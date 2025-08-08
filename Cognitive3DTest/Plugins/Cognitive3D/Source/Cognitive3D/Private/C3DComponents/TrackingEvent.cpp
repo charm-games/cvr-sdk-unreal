@@ -32,7 +32,7 @@ void UTrackingEvent::BeginPlay()
 
 void UTrackingEvent::OnSessionBegin()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 	float DelaySeconds = 1.0f;
 	bCanTick = false;

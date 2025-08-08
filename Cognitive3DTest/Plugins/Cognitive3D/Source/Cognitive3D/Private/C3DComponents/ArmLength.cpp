@@ -31,7 +31,7 @@ void UArmLength::BeginPlay()
 
 void UArmLength::OnSessionBegin()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 	world->GetTimerManager().SetTimer(IntervalHandle, FTimerDelegate::CreateUObject(this, &UArmLength::EndInterval), IntervalDuration, true);
 	CurrentSampleCount = 0;
@@ -92,7 +92,7 @@ void UArmLength::EndInterval()
 			cognitive->SetParticipantProperty("armlength", ArmLength);
 			
 			//when complete, clear timer
-			auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+			auto world = GetWorld();
 			if (world == nullptr) { return; }
 			world->GetTimerManager().ClearTimer(IntervalHandle);
 		}
@@ -101,7 +101,7 @@ void UArmLength::EndInterval()
 
 void UArmLength::OnSessionEnd()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 	world->GetTimerManager().ClearTimer(IntervalHandle);
 }

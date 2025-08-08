@@ -93,7 +93,7 @@ void UOculusPlatform::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 
 void UOculusPlatform::OnSessionBegin()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 
 #ifdef INCLUDE_OCULUS_PLATFORM

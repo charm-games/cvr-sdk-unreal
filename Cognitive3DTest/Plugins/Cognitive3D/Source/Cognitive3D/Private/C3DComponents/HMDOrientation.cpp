@@ -30,7 +30,7 @@ void UHMDOrientation::BeginPlay()
 
 void UHMDOrientation::OnSessionBegin()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 	world->GetTimerManager().SetTimer(IntervalHandle, FTimerDelegate::CreateUObject(this, &UHMDOrientation::EndInterval), IntervalDuration, true);
 }
@@ -71,7 +71,7 @@ void UHMDOrientation::RecordPitch()
 
 void UHMDOrientation::OnSessionEnd()
 {
-	auto world = ACognitive3DActor::GetCognitiveSessionWorld();
+	auto world = GetWorld();
 	if (world == nullptr) { return; }
 	world->GetTimerManager().ClearTimer(IntervalHandle);
 }
