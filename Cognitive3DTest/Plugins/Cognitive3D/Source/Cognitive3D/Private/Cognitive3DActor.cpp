@@ -111,6 +111,10 @@ void ACognitive3DActor::EndPlay(const EEndPlayReason::Type EndPlayReason)
 		cog->OnPostSessionEnd.RemoveDynamic(this, &ACognitive3DActor::ReceivePostEndSession);
 		cog.Reset();
 	}
+
+    // CHARM @dtsiknis - remove this world from the lookup since we are ending
+    // it
+    PerWorldInstanceMap.Remove(GetWorld()->GetUniqueID());
 }
 
 void ACognitive3DActor::OnEndPIE(bool bIsSimulating)
